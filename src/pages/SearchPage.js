@@ -4,27 +4,39 @@ import { setProducts } from "../store/productsSlice";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Image from "../images/rating.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 
-const HomePage = () => {
+const SearchPage = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
-      .then((data) => dispatch(setProducts(data)));
-  }, [dispatch]);
+      .then((data) => {
+        // Filter data based on query parameter (e.g., title)
+        const queryParams = new URLSearchParams(location.search);
+        const q = queryParams.get("q");
 
-  // console.log(products);
+        if (q) {
+          data = data.filter((item) =>
+            item.title.toLowerCase().includes(q.toLowerCase())
+          );
+        }
+
+        dispatch(setProducts(data));
+      });
+  }, [dispatch, location.search]);
+
   return (
     <>
       <SearchBar />
 
       <Container style={{ marginTop: 30, marginBottom: 30 }}>
         <div className="col-lg-12">
-          <h1>Products ...</h1>
+          <h1>Search Page Products ...</h1>
           {products.length > 0 ? (
             <Row>
               {products.map((product) => (
@@ -75,4 +87,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default SearchPage;

@@ -2,3 +2,16 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+
+.productImg {
+  height: 500px;
+  width: 450px;
+  padding: 30px 40px;
+}
+.p-container {
+  margin-top: 20px;
+  padding: 20px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}

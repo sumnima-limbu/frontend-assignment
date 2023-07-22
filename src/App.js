@@ -3,6 +3,9 @@ import NavBar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import NoMatchPage from "./pages/NoMatch";
 import { Routes, Route } from "react-router-dom";
+import ProductDetail from "./pages/ProductDetail";
+import Footer from "./components/Footer";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -10,8 +13,11 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="product/:productId" element={<ProductDetail />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path="*" element={<NoMatchPage />} />
       </Routes>
+      <Footer />
     </>
   );
 }
