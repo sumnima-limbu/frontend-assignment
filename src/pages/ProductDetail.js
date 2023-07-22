@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import AddToCart from "../components/AddToCart";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -36,6 +36,9 @@ const ProductDetail = () => {
                   <p>Category: {product.category}</p>
                   <p>Price: ${product.price}</p>
                   <p>Rating: {product.rating.rate}</p>
+                  <div>
+                    <AddToCart product={product} />
+                  </div>
                 </div>
               </Row>
             </div>
