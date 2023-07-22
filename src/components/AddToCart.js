@@ -4,7 +4,7 @@ import { addProductToCart, removeProductFromCart } from "./../store/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-export default function AddToCart(props) {
+const AddToCart = (props) => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { product } = props;
@@ -45,4 +45,6 @@ export default function AddToCart(props) {
       Add to cart
     </Button>
   );
-}
+};
+
+export default AddToCart;

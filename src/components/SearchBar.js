@@ -19,6 +19,7 @@ const SearchBar = () => {
         <InputGroup className="mb-3">
           <input
             type="search"
+            className="form-control"
             value={search}
             placeholder="Search in Online Store .."
             onChange={(e) => {
