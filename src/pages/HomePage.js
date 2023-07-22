@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Image from "../images/rating.png";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
+import AddToCart from "../components/AddToCart";
 
 const HomePage = () => {
   const products = useSelector((state) => state.products);
@@ -29,16 +30,16 @@ const HomePage = () => {
             <Row>
               {products.map((product) => (
                 <Col key={product.id} md={4} style={{ marginBottom: 40 }}>
-                  <Link
-                    to={`/product/${product.id}`}
-                    style={{ textDecoration: "none" }}
+                  <Card
+                    style={{
+                      width: "19rem",
+                      marginBottom: "3rem",
+                      height: "22rem",
+                    }}
                   >
-                    <Card
-                      style={{
-                        width: "19rem",
-                        marginBottom: "3rem",
-                        height: "22rem",
-                      }}
+                    <Link
+                      to={`/product/${product.id}`}
+                      style={{ textDecoration: "none" }}
                     >
                       <Card.Img
                         variant="top"
@@ -50,19 +51,27 @@ const HomePage = () => {
                           padding: "16px",
                         }}
                       />
-                      <Card.Body>
+                    </Link>
+                    <Card.Body>
+                      <Link
+                        to={`/product/${product.id}`}
+                        style={{ textDecoration: "none" }}
+                      >
                         <h6 className="semi-bold">{product.title}</h6>
-                        <img
-                          style={{
-                            height: "50px",
-                            width: "80px",
-                          }}
-                          src={Image}
-                        />
-                        ({product.rating.rate})
-                      </Card.Body>
-                    </Card>
-                  </Link>
+                      </Link>
+                      <img
+                        style={{
+                          height: "50px",
+                          width: "80px",
+                        }}
+                        src={Image}
+                      />
+                      ({product.rating.rate})
+                      <div>
+                        <AddToCart product={product} />
+                      </div>
+                    </Card.Body>
+                  </Card>
                 </Col>
               ))}
             </Row>
